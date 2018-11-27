@@ -2,4 +2,14 @@
 
 <h3>ToDo list</h3>
 
-<todo-list></todo-list>
+<todo-list
+        *ngIf="isLoaded"
+        [items]="items"
+        (create)="todoListService.add($event)"
+        (delete)="todoListService.remove($event)"
+></todo-list>
+
+<material-progress
+        *ngIf="!isLoaded"
+        [indeterminate]="true"
+></material-progress>

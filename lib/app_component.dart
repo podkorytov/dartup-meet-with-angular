@@ -1,16 +1,31 @@
 import 'package:angular/angular.dart';
-
-import 'src/todo_list/todo_list_component.dart';
-
-// AngularDart info: https://webdev.dartlang.org/angular
-// Components info: https://webdev.dartlang.org/components
+import 'package:angular_components/angular_components.dart';
+import 'package:dartup_meet_with_angular/src/todo_list/todo_list_component.dart';
+import 'package:dartup_meet_with_angular/src/todo_list/todo_list_service.dart';
 
 @Component(
-  selector: 'my-app',
+  selector: 'dartup-app',
   styleUrls: ['app_component.css'],
   templateUrl: 'app_component.html',
-  directives: [TodoListComponent],
+  directives: [
+    NgIf,
+    MaterialProgressComponent,
+    TodoListComponent,
+  ],
+  providers: [
+    ClassProvider(TodoListService),
+  ],
 )
-class AppComponent {
-  // Nothing here yet. All logic is in TodoListComponent.
+class AppComponent implements OnInit {
+  final TodoListService todoListService;
+  bool isLoaded = false;
+
+  List<String> get items => todoListService.todoList;
+
+  AppComponent(this.todoListService);
+
+  @override
+  void ngOnInit() {
+    todoListService.loadTodoList().then((result) => isLoaded = result);
+  }
 }

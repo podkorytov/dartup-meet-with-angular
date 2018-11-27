@@ -2,10 +2,16 @@ import 'dart:async';
 
 import 'package:angular/core.dart';
 
-/// Mock service emulating access to a to-do list stored on a server.
 @Injectable()
 class TodoListService {
-  List<String> mockTodoList = <String>[];
+  static List<String> _mockTodoList = <String>[];
 
-  Future<List<String>> getTodoList() async => mockTodoList;
+  Future<bool> loadTodoList() async =>
+      new Future<bool>.delayed(const Duration(seconds: 3), () => true);
+
+  List<String> get todoList => _mockTodoList;
+
+  void add(String itemText) => _mockTodoList.add(itemText);
+
+  String remove(int index) => _mockTodoList.removeAt(index);
 }

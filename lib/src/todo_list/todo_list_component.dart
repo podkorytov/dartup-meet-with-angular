@@ -3,8 +3,6 @@ import 'dart:async';
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
-import 'todo_list_service.dart';
-
 @Component(
   selector: 'todo-list',
   styleUrls: ['todo_list_component.css'],
@@ -17,27 +15,26 @@ import 'todo_list_service.dart';
     NgFor,
     NgIf,
   ],
-  providers: [
-    ClassProvider(TodoListService),
-  ],
 )
-class TodoListComponent implements OnInit {
-  final TodoListService todoListService;
-
+class TodoListComponent {
+  @Input()
   List<String> items = [];
+
+  final _newItemStream = new StreamController<String>();
+  final _deleteItemStream = new StreamController<int>();
+
+  @Output()
+  Stream<String> get create => _newItemStream.stream;
+
+  @Output()
+  Stream<int> get delete => _deleteItemStream.stream;
+
   String newTodo = '';
 
-  TodoListComponent(this.todoListService);
-
-  @override
-  Future<Null> ngOnInit() async {
-    items = await todoListService.getTodoList();
-  }
-
   void add() {
-    items.add(newTodo);
+    _newItemStream.add(newTodo);
     newTodo = '';
   }
 
-  String remove(int index) => items.removeAt(index);
+  void remove(int index) => _deleteItemStream.add(index);
 }

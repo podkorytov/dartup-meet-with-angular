@@ -1,3 +1,11 @@
 :host {
     /* This is equivalent of the 'body' selector of a page. */
 }
+
+.log {
+    margin-top: 50px;
+    border: 1px solid gray;
+    color: gray;
+    height: 300px;
+    overflow: auto;
+}

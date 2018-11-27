@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
+import 'package:dartup_meet_with_angular/services/lifecycle_log_service.dart';
 
 @Component(
   selector: 'todo-list',
@@ -15,8 +16,11 @@ import 'package:angular_components/angular_components.dart';
     NgFor,
     NgIf,
   ],
+  providers: [
+    ClassProvider(LifecycleLogService),
+  ],
 )
-class TodoListComponent {
+class TodoListComponent with LifecycleLogService {
   @Input()
   List<String> items = [];
 
@@ -37,4 +41,7 @@ class TodoListComponent {
   }
 
   void remove(int index) => _deleteItemStream.add(index);
+
+  @override
+  String get className => 'TodoListComponent';
 }

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
+import 'package:dartup_meet_with_angular/components/todo_item/todo_item_component.dart';
 import 'package:dartup_meet_with_angular/services/lifecycle_log_service.dart';
 
 @Component(
@@ -9,12 +10,12 @@ import 'package:dartup_meet_with_angular/services/lifecycle_log_service.dart';
   styleUrls: ['todo_list_component.css'],
   templateUrl: 'todo_list_component.html',
   directives: [
-    MaterialCheckboxComponent,
     MaterialFabComponent,
     MaterialIconComponent,
     materialInputDirectives,
     NgFor,
     NgIf,
+    TodoItemComponent,
   ],
   providers: [
     ClassProvider(LifecycleLogService),

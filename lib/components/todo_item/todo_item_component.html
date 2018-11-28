@@ -1,7 +1,10 @@
 <material-checkbox #done materialTooltip="Mark item as done">
 </material-checkbox>
 
-<span [class.done]="done.checked">{{ item }}</span>
+<div class="content">
+    <span [class.done]="done.checked">{{ item.title }}</span>
+    <span class="create-time">{{ item.created | itemDate }}</span>
+</div>
 
 <material-fab mini (trigger)="remove(index)">
     <material-icon icon="delete"></material-icon>

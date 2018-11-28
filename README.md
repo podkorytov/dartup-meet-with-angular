@@ -14,3 +14,4 @@ Steps:
 * step0: initial template application
 * step1: add usage of component input / output 
 * step2: add mixin with live cycle log
+* step3: pipes & OnPush change detection

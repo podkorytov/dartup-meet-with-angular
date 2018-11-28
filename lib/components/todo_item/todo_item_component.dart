@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
+import 'package:dartup_meet_with_angular/models/todo_item.dart';
+import 'package:dartup_meet_with_angular/pipes/date_pipe.dart';
 import 'package:dartup_meet_with_angular/services/lifecycle_log_service.dart';
 
 @Component(
@@ -17,10 +19,14 @@ import 'package:dartup_meet_with_angular/services/lifecycle_log_service.dart';
   providers: [
     ClassProvider(LifecycleLogService),
   ],
+  pipes: [
+    TodoDatePipe,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 )
 class TodoItemComponent with LifecycleLogService {
   @Input()
-  String item;
+  TodoItem item;
 
   @Input()
   int index;
@@ -33,5 +39,5 @@ class TodoItemComponent with LifecycleLogService {
   void remove(int index) => _deleteItemStream.add(index);
 
   @override
-  String get className => 'TodoItemComponent';
+  String get className => 'TodoItemComponent[${index}]';
 }

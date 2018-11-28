@@ -10,7 +10,3 @@ li {
 li:hover {
   background-color: #EEEEEE;
 }
-
-.done {
-  text-decoration: line-through;
-}

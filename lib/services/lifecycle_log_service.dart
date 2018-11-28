@@ -4,7 +4,8 @@ import 'package:angular/angular.dart';
 class LifecycleLogService
     implements
         OnInit,
-        OnChanges,
+        DoCheck,
+        AfterChanges,
         AfterContentInit,
         AfterContentChecked,
         AfterViewInit,
@@ -40,20 +41,22 @@ class LifecycleLogService
   void ngAfterViewChecked() => _addLogCall('ngAfterViewChecked');
 
   @override
-  // Respond when Angular (re)sets data-bound input properties.
-  // The method receives a SimpleChanges object
-  // of current and previous property values.
-  void ngOnChanges(Map<String, SimpleChange> changes) {
-    _addLogCall('ngOnChanges');
-    _log.add('Properties: ${changes.keys.join(',')}');
-  }
-
-  @override
   // Cleanup just before Angular destroys the directive/component.
   // Unsubscribe observables and detach event handlers to avoid memory leaks.
   void ngOnDestroy() => _addLogCall('ngOnDestroy');
 
+  @override
+  void ngDoCheck() => _addLogCall('ngDoCheck');
+
+  @override
+  void ngAfterChanges() => _addLogCall('ngAfterChanges');
+
   void _addLogCall(String methodName) {
     _log.add('${counter++}) ${className} :: ${methodName} called at ${DateTime.now()}');
+  }
+
+  void clearLog() {
+    counter = 0;
+    _log.clear();
   }
 }

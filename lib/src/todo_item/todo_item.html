@@ -1,0 +1,6 @@
+<material-checkbox #done materialTooltip="Mark item as done">
+</material-checkbox>
+<span [class.done]="done.checked">{{itemTitle}}</span>
+<material-fab mini (trigger)="remove()">
+    <material-icon icon="delete"></material-icon>
+</material-fab>

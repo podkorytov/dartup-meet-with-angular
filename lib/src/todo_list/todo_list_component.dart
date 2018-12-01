@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
+import 'package:dartup_meet_with_angular/src/models/todo.dart';
+import 'package:dartup_meet_with_angular/src/todo_item/todo_item_component.dart';
 
 import 'todo_list_service.dart';
 
@@ -16,6 +18,7 @@ import 'todo_list_service.dart';
     materialInputDirectives,
     NgFor,
     NgIf,
+    TodoItem
   ],
   providers: [
     ClassProvider(TodoListService),
@@ -24,7 +27,7 @@ import 'todo_list_service.dart';
 class TodoListComponent implements OnInit {
   final TodoListService todoListService;
 
-  List<String> items = [];
+  List<Todo> items = [];
   String newTodo = '';
 
   TodoListComponent(this.todoListService);
@@ -35,9 +38,9 @@ class TodoListComponent implements OnInit {
   }
 
   void add() {
-    items.add(newTodo);
+    items.add(new Todo(newTodo, DateTime.now()));
     newTodo = '';
   }
 
-  String remove(int index) => items.removeAt(index);
+  void remove(int index) => items.removeAt(index);
 }

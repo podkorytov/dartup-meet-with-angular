@@ -18,9 +18,6 @@ import 'package:dartup_meet_with_angular/services/lifecycle_log_service.dart';
     NgIf,
     TodoItemComponent,
   ],
-  providers: [
-    ClassProvider(LifecycleLogService),
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 )
 class TodoListComponent with LifecycleLogService {

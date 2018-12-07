@@ -16,9 +16,6 @@ import 'package:dartup_meet_with_angular/services/lifecycle_log_service.dart';
     MaterialIconComponent,
     materialInputDirectives,
   ],
-  providers: [
-    ClassProvider(LifecycleLogService),
-  ],
   pipes: [
     TodoDatePipe,
   ],

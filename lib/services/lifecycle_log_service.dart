@@ -1,6 +1,5 @@
 import 'package:angular/angular.dart';
 
-@Injectable()
 class LifecycleLogService
     implements
         OnInit,

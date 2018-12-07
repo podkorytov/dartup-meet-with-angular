@@ -18,7 +18,6 @@ import 'package:dartup_meet_with_angular/services/todo_list_service.dart';
   ],
   providers: [
     ClassProvider(TodoListService),
-    ClassProvider(LifecycleLogService),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 )
